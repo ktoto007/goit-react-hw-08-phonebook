@@ -1,10 +1,12 @@
 import { Formik } from 'formik';
 import { object, string } from 'yup';
+import { useDispatch } from 'react-redux';
 import {
   FormLabel,
   FormInput,
   StyledForm,
 } from 'components/form/FormContaks.styled';
+import { login } from 'redux/auth/authOperetion';
 
 const Login = () => {
   const schema = object({
@@ -17,9 +19,11 @@ const Login = () => {
     password: '',
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { resetForm }) => {
     resetForm();
-    console.log(values);
+    dispatch(login(values));
   };
 
   return (

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { removeContact } from 'redux/operetion';
+import { removeContact } from 'redux/contacts/operetion';
 import { ElementContent, StyledListItem } from './ListItem.styled';
 
 export const ListItem = ({ id, name, number }) => {

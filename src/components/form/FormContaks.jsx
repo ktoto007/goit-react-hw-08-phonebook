@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { object, string } from 'yup';
 import { selectContactList } from 'redux/selectors';
 import { FormLabel, FormInput, StyledForm } from './FormContaks.styled';
-import { addContact } from 'redux/operetion';
+import { addContact } from 'redux/contacts/operetion';
 
 export const FormContaks = () => {
   const contacts = useSelector(selectContactList);
