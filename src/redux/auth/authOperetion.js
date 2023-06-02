@@ -14,27 +14,39 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   'auth/signup',
   async (obj, { rejectWithValue }) => {
-    const responce = await axios.post('/users/signup', { ...obj });
-    setAuthHeader(responce.data.token);
-    return responce.data;
+    try {
+      const responce = await axios.post('/users/signup', { ...obj });
+      setAuthHeader(responce.data.token);
+      return responce.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 
 export const login = createAsyncThunk(
   'auth/login',
   async (obj, { rejectWithValue }) => {
-    const responce = await axios.post('/users/login', { ...obj });
-    setAuthHeader(responce.data.token);
-    return responce.data;
+    try {
+      const responce = await axios.post('/users/login', { ...obj });
+      setAuthHeader(responce.data.token);
+      return responce.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 
 export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
-    const responce = await axios.post('/users/logout');
-    clearAuthHeader();
-    return responce.data;
+    try {
+      const responce = await axios.post('/users/logout');
+      clearAuthHeader();
+      return responce.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
   }
 );
 

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Header, Nav, UnstableNav } from './SharedLauout.Styled';
@@ -29,7 +30,9 @@ export const SharedLayout = () => {
         </Nav>
       </Header>
       <main>
-        <Outlet></Outlet>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet></Outlet>
+        </Suspense>
       </main>
     </>
   );

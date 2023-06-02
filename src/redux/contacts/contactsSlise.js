@@ -4,7 +4,7 @@ import {
   addContact,
   removeContact,
   updateContact,
-} from './operetion';
+} from './contactOperetion';
 
 const contactsInitialState = {
   contacts: [],

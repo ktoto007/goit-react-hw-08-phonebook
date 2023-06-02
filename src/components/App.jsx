@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +7,11 @@ import { SharedLayout } from './SharedLatout/SharedLayout';
 import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRouete } from './PrivateRoute';
-import Home from 'pages/Home';
-import Register from 'pages/Register';
-import Login from 'pages/Login';
-import Contacts from 'pages/Contacts';
+
+const Home = lazy(() => import('pages/Home'));
+const Register = lazy(() => import('pages/Register'));
+const Login = lazy(() => import('pages/Login'));
+const Contacts = lazy(() => import('pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();

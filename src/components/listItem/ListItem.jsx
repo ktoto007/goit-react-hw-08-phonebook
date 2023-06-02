@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { removeContact } from 'redux/contacts/operetion';
+import { removeContact } from 'redux/contacts/contactOperetion';
 import { ElementContent, StyledListItem } from './ListItem.styled';
 
-export const ListItem = ({ id, name, number, openModal }) => {
+export const ListItem = ({ id, name, number, updateModal }) => {
   const dispatch = useDispatch();
   return (
     <StyledListItem>
@@ -23,7 +23,7 @@ export const ListItem = ({ id, name, number, openModal }) => {
         type="button"
         className="button"
         id={id}
-        onClick={() => openModal(id)}
+        onClick={() => updateModal(id)}
       >
         Update
       </button>
@@ -35,5 +35,5 @@ ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
+  updateModal: PropTypes.func.isRequired,
 };

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { ListItem } from 'components/listItem/ListItem';
 import { selectFilterParam } from 'redux/filter/filterSelectors';
 import { selectContactList } from 'redux/contacts/contactsSelectors';
 
-export const ContactList = ({ openModal }) => {
+export const ContactList = ({ updateModal }) => {
   const contacts = useSelector(selectContactList);
   const filter = useSelector(selectFilterParam);
 
@@ -21,9 +22,13 @@ export const ContactList = ({ openModal }) => {
           id={id}
           name={name}
           number={number}
-          openModal={openModal}
+          updateModal={updateModal}
         />
       ))}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  updateModal: PropTypes.func.isRequired,
 };

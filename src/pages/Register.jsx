@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import {
@@ -12,7 +12,7 @@ const Register = () => {
   const schema = object({
     name: string().required(),
     email: string().required(),
-    password: string().required(),
+    password: string().min(7, 'Too Short!').required(),
   });
 
   const initialValues = {
@@ -46,6 +46,7 @@ const Register = () => {
         <FormLabel>
           Password:
           <FormInput type="password" name="password" />
+          <ErrorMessage name="password" />
         </FormLabel>
         <button type="submit" className="button">
           register

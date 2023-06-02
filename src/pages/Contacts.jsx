@@ -4,7 +4,7 @@ import { useDispatch /**useSelector**/ } from 'react-redux';
 import { FormContaks } from 'components/form/FormContaks';
 import { ContactList } from 'components/contactList/ContactList';
 import { Filter } from 'components/filter/Filter';
-import { fetchContacts } from 'redux/contacts/operetion';
+import { fetchContacts } from 'redux/contacts/contactOperetion';
 import { Modal } from 'components/modal/Modal';
 
 // import { toast, ToastContainer } from 'react-toastify';
@@ -40,7 +40,7 @@ const Contacts = () => {
       <FormContaks />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList openModal={updateModal} />
+      <ContactList updateModal={updateModal} />
       {showModal && <Modal id={contactId} closeModal={closeModal} />}
     </>
   );

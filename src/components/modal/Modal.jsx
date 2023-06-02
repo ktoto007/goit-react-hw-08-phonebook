@@ -1,39 +1,31 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Overlay, ModalStyles } from './Modal.styled';
 import { Formik } from 'formik';
 import { object, string } from 'yup';
+import PropTypes from 'prop-types';
 import { selectContactList } from 'redux/contacts/contactsSelectors';
 import {
   FormLabel,
   FormInput,
   StyledForm,
 } from 'components/form/FormContaks.styled';
-import { updateContact } from 'redux/contacts/operetion';
+import { Overlay, ModalStyles } from './Modal.styled';
+import { updateContact } from 'redux/contacts/contactOperetion';
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ id, closeModal }) => {
   const contacts = useSelector(selectContactList);
-
+  const dispatch = useDispatch();
+  const { name, number } = contacts.filter(contact => contact.id === id)[0];
   const schema = object({
     name: string().required(),
     number: string().required(),
   });
-
-  const { name, number } = contacts.filter(contact => contact.id === id)[0];
-
   const initialValues = {
     name,
     number,
-  };
-
-  const dispatch = useDispatch();
-
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      closeModal();
-    }
   };
 
   useEffect(() => {
@@ -43,6 +35,11 @@ export const Modal = ({ id, closeModal }) => {
     };
   });
 
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      closeModal();
+    }
+  };
   const handleSubmit = (values, { resetForm }) => {
     resetForm();
     dispatch(updateContact({ id, ...values }));
@@ -86,7 +83,7 @@ export const Modal = ({ id, closeModal }) => {
               />
             </FormLabel>
             <button type="submit" className="button">
-              Add contact
+              Update contact
             </button>
           </StyledForm>
         </Formik>
@@ -94,4 +91,9 @@ export const Modal = ({ id, closeModal }) => {
     </Overlay>,
     modalRoot
   );
+};
+
+Modal.propTypes = {
+  id: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
