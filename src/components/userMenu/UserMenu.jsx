@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/authOperetion';
 import { selectUser } from 'redux/auth/authSelectors';
-
+import { Container } from './UserMenu.styled';
 export const UserMenu = () => {
   const { email } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -10,11 +10,11 @@ export const UserMenu = () => {
     dispatch(logout());
   };
   return (
-    <div>
+    <Container>
       <p>{email}</p>
-      <button type="button" onClick={handleClick}>
+      <button type="button" onClick={handleClick} className="button">
         Logout
       </button>
-    </div>
+    </Container>
   );
 };

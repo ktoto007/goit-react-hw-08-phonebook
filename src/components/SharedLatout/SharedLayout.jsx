@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Header, Nav, BaseNav, UnstableNav } from './SharedLauout.Styled';
+import { Header, Nav, UnstableNav } from './SharedLauout.Styled';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { UserMenu } from 'components/userMenu/UserMenu';
 
@@ -11,9 +11,8 @@ export const SharedLayout = () => {
     <>
       <Header>
         <Nav>
-          <BaseNav>
-            <NavLink to="/">Home </NavLink>
-          </BaseNav>
+          <NavLink to="/">Home </NavLink>
+
           <UnstableNav>
             {isLoggedIn ? (
               <>

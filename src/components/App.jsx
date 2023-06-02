@@ -17,31 +17,36 @@ export const App = () => {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
   const refreshing = useSelector(selectIsRefreshing);
-  console.log(refreshing);
+
   return (
     !refreshing && (
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="register"
-            element={
-              <RestrictedRoute component={Register} redirectTo="/contacts" />
-            }
-          />
-          <Route
-            path="contacts"
-            element={<PrivateRouete component={Contacts} redirectTo="/login" />}
-          />
-          <Route
-            path="login"
-            element={
-              <RestrictedRoute component={Login} redirectTo="/contacts" />
-            }
-          />
-        </Route>
-      </Routes>
+      <>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route
+              path="register"
+              element={
+                <RestrictedRoute component={Register} redirectTo="/contacts" />
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRouete component={Contacts} redirectTo="/login" />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute component={Login} redirectTo="/contacts" />
+              }
+            />
+          </Route>
+        </Routes>
+      </>
     )
   );
 };

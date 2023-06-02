@@ -5,19 +5,20 @@ export const Header = styled.header`
   padding: 20px 0px;
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 
 export const Nav = styled.nav`
   display: flex;
+  align-items: center;
   gap: 10px;
   width: 100%;
   justify-content: space-between;
   padding: 0 20px;
 `;
 
-export const BaseNav = styled.div``;
-
 export const UnstableNav = styled.div`
   display: flex;
   gap: 10px;
+  align-items: center;
 `;

@@ -49,7 +49,6 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(state.auth.token);
 
     const responce = await axios.get('/users/current');
-    console.log(responce);
     return responce.data;
   }
 );

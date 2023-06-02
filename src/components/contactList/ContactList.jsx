@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
 import { ListItem } from 'components/listItem/ListItem';
-import { selectFilterParam, selectContactList } from 'redux/selectors';
-export const ContactList = () => {
+import { selectFilterParam } from 'redux/filter/filterSelectors';
+import { selectContactList } from 'redux/contacts/contactsSelectors';
+
+export const ContactList = ({ openModal }) => {
   const contacts = useSelector(selectContactList);
   const filter = useSelector(selectFilterParam);
 
@@ -14,7 +16,13 @@ export const ContactList = () => {
   return (
     <ul>
       {onFilterContact().map(({ id, name, number }) => (
-        <ListItem key={id} id={id} name={name} number={number} />
+        <ListItem
+          key={id}
+          id={id}
+          name={name}
+          number={number}
+          openModal={openModal}
+        />
       ))}
     </ul>
   );
